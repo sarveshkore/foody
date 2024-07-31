@@ -1,5 +1,5 @@
 // import {FaYoutube} from 'react-icons/fa';
-// import Logo from '.assets/images/foody-logo.png'
+import Logo from '../asset/images/foody-logo.png'
 const Header=()=>{
     return(
         <>
@@ -7,8 +7,8 @@ const Header=()=>{
           
             <nav className="navbar navbar-expand-sm p-1 navbar-light">
                 <div className="container-fluid">
-                <a className="navbar-brand" href="#"><img src='http://www.romanianstartups.com/wp-content/uploads/2014/11/foody-logo.png' width="75px"/></a>
-                {/* <a className="navbar-brand" href="#"><img src={Logo}/></a> */}
+                {/* <a className="navbar-brand" href="#"><img src='http://www.romanianstartups.com/wp-content/uploads/2014/11/foody-logo.png' width="75px"/></a> */}
+                <a className="navbar-brand" href="#"><img src={Logo} width="75px" alt='logo'/></a>
                 
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                 <span className="navbar-toggler-icon"></span>

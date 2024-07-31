@@ -4,7 +4,7 @@ import Cardcontainer from "./Cardcontainer";
 const Body =()=>{
     return(
         <>
-            <h1>This is Body Component</h1>
+            {/* <h1>This is Body Component</h1> */}
             <Cardcontainer/>
         </>
     );
