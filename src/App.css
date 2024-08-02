@@ -12,5 +12,14 @@
 .custom-card:hover {
   transform: scale(0.90) ;
   cursor: pointer;
+  background-color: rgb(206, 229, 123);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.navbar{
+  background-color: rgb(240, 240, 153);
+}
+
+
+.body{
+  background-color: rgb(240, 240, 153);
 }
