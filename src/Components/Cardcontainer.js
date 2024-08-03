@@ -14,12 +14,14 @@ const Cardcontainer=()=>{
                 restaurants.map((restaurant)=>{
                     return(
                         <Restaurantcard
-             imgUrl={IMG_URL+restaurant?.info?.cloudinaryImageId}
-             title={restaurant?.info?.name}
-             starRating={restaurant?.info?.avgRating}
-             deliveryTime={restaurant?.info?.sla?.deliveryTime}
-             cuisines={restaurant?.info?.cuisines.join(", ")}
-             location={restaurant?.info?.areaName}
+                        key={restaurant?.info?.id}
+                        // imgUrl={IMG_URL+restaurant?.info?.cloudinaryImageId}
+                        // title={restaurant?.info?.name}
+                        // starRating={restaurant?.info?.avgRating}
+                        // deliveryTime={restaurant?.info?.sla?.deliveryTime}
+                        // cuisines={restaurant?.info?.cuisines.join(", ")}
+                        // location={restaurant?.info?.areaName}
+                        {...restaurant?.info}
             />
                     );
                 })
