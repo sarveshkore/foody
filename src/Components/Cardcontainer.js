@@ -1,14 +1,27 @@
 import Restaurantcard from "./Restaurantcard";
 import { restaurantList } from "../const/config";
 import { IMG_URL } from "../const/config";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const Cardcontainer=()=>{
     const [restaurantData,setRestaurantData]=useState(restaurantList[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     // console.log("restaurantList",restaurantList[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     
     const[count,setCount]=useState(0);
     console.log("count",count)
-    console.log("component is rendered")
+    // console.log("component is rendered")
+    console.log("API is called")
+
+    const getRestaurants=async()=>{
+        const data= await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const json=await data.json();
+        console.log(json);
+    }
+
+    useEffect(()=>{
+        getRestaurants();
+    },[])
+
+
 
     const filterRestaurants=()=>{
         const restaurants=restaurantData.filter((restaurant)=>{
