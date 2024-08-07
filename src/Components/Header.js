@@ -5,7 +5,7 @@ const Header=()=>{
         <>
             {/* <h1>This is Header Component</h1> */}
           
-            <nav className="navbar navbar-expand-sm p-1 navbar-light">
+             <nav className="navbar navbar-expand-sm p-1 navbar-light fixed-top"> {/*mb-5*/}
                 <div className="container-fluid">
                 {/* <a className="navbar-brand" href="#"><img src='http://www.romanianstartups.com/wp-content/uploads/2014/11/foody-logo.png' width="75px"/></a> */}
                 <a className="navbar-brand" href="#"><img src={Logo} width="75px" alt='logo'/></a>
@@ -16,13 +16,13 @@ const Header=()=>{
                 <div className="collapse navbar-collapse justify-content-end " id="collapsibleNavbar">
                 <ul className="navbar-nav">
                 <li className="nav-item">
+                <a className="nav-link" href="#">Cart</a>
+                </li>
+                <li className="nav-item">
                 <a className="nav-link" href="#">About Us</a>
                 </li>
                 <li className="nav-item">
                 <a className="nav-link" href="#">Contact Us</a>
-                </li>
-                <li className="nav-item">
-                <a className="nav-link" href="#">Cart</a>
                 </li>    
                 </ul>
                 </div>

@@ -1,44 +1,57 @@
 import Restaurantcard from "./Restaurantcard";
 import { restaurantList } from "../const/config";
 import { IMG_URL } from "../const/config";
+import { useState } from "react";
 const Cardcontainer=()=>{
-    console.log("restaurantList",restaurantList);
-    console.log("restaurantList",restaurantList[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    const restaurants=restaurantList[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-    console.log(restaurantList[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    const [restaurantData,setRestaurantData]=useState(restaurantList[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    // console.log("restaurantList",restaurantList[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     
+    const[count,setCount]=useState(0);
+    console.log("count",count)
+    console.log("component is rendered")
+
+    const filterRestaurants=()=>{
+        const restaurants=restaurantData.filter((restaurant)=>{
+            return(restaurant?.info?.avgRating>=4.5)
+        })
+        setRestaurantData(restaurants)
+        console.log(restaurants);
+        console.log(setRestaurantData)
+    }
+
     return(
         <>
-        <div className="container d-flex flex-wrap">
+        <div className="container ">
+            <button className="" onClick={filterRestaurants}>Top rated restaurants</button>
+        </div>
+        <div className="container ">
+            <h1>Count={count}</h1>
+            <button onClick={()=>{
+                if(count<5){
+                setCount(count+1)
+                // console.log(count)
+                }}}>Increase</button>
+            <button onClick={()=>{
+                if(count>0){
+                setCount(count-1);
+                // console.log(count)
+                }}}>Decrease</button>
+
+        </div>
+        <div className="container d-flex flex-wrap justify-content-around">
             {
-                restaurants.map((restaurant)=>{
+                    restaurantData.map((restaurant)=>{
                     return(
                         <Restaurantcard
                         key={restaurant?.info?.id}
-                        // imgUrl={IMG_URL+restaurant?.info?.cloudinaryImageId}
-                        // title={restaurant?.info?.name}
-                        // starRating={restaurant?.info?.avgRating}
-                        // deliveryTime={restaurant?.info?.sla?.deliveryTime}
-                        // cuisines={restaurant?.info?.cuisines.join(", ")}
-                        // location={restaurant?.info?.areaName}
-                        {...restaurant?.info}
-            />
+                        {...restaurant?.info}/>
                     );
                 })
             }
+        </div> 
+        </>    
 
-
-
-            {/* <Restaurantcard
-             imgUrl={IMG_URL+restaurants[0]?.info?.cloudinaryImageId}
-             title={restaurants[0]?.info?.name}
-             starRating={restaurants[0]?.info?.avgRating}
-             deliveryTime={restaurants[0]?.info?.sla?.deliveryTime}
-             cuisines={restaurants[0]?.info?.cuisines.join(", ")}
-             location={restaurants[0]?.info?.areaName}
-                        /> */}
-        </div>    
-        </>
+      
     );
 }
 export default Cardcontainer;
