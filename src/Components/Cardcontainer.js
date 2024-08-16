@@ -1,6 +1,6 @@
 import { restaurantList } from "../const/config";
 import Restaurantcard from "./Restaurantcard";
-
+import Shimmer from "./Shimmer";
 import { useEffect, useState } from "react";
 const Cardcontainer=()=>{
     // const [restaurantData,setRestaurantData]=useState(restaurantList[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
@@ -8,11 +8,12 @@ const Cardcontainer=()=>{
     const [restaurantData,setRestaurantData]=useState([]);
     const [restaurantCollecttion,setrestaurantCollecttion]=useState([]);
     const [searchText,setSearchText]=useState("");
+    const [loading,setLoading]=useState(true);
 
     console.log("API is called")
     console.log(restaurantList);
     
-
+    
 
     const handleSearchText = (e) => {
         console.log("search text",searchText)
@@ -20,8 +21,7 @@ const Cardcontainer=()=>{
     };
     const filterData=()=>{
         const filteredData= restaurantCollecttion.filter((restaurant)=>{
-            return restaurant?.info?.name.toLowerCase().includes(searchText)
-            
+            return restaurant?.info?.name.toLowerCase().includes(searchText);
         })
         setRestaurantData(filteredData)
     }
@@ -34,17 +34,39 @@ const Cardcontainer=()=>{
             // console.log(json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants);
             // console.log("json data",json);  
             
-            const data= await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-            const json= await data.json();
-            setRestaurantData(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-            console.log(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-            setrestaurantCollecttion(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        }
+            // const data= await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+            // const json= await data.json();
+            // setLoading(false);
+            // setRestaurantData(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+            // console.log(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+            // setrestaurantCollecttion(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+            
+            try {
+                const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.07480&lng=72.88560&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+                const json = await data.json();
+                const restaurants = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+                setLoading(false);
+
+                if (restaurants) {
+                  setRestaurantData(restaurants);
+                } else {
+                  console.log("No restaurants found.");
+                }
+              } catch (error) {
+                console.error("Failed to fetch restaurants:", error);
+              }
+        
+        };
+
+
         getRestaurants();
     },[]);
 
     console.log("Component is rendered");
 
+    if(loading){
+        return(        <div className="container d-flex flex-wrap justify-content-around"><Shimmer/></div>);
+    }
     return(
         <>
 
