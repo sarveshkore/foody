@@ -71,3 +71,17 @@
   background-size: 1000px 100%; /* Width of shimmer background */
   animation: shimmer 2s infinite linear;
 }
+
+.filters{
+  border-radius: 15px;
+  background-color: orange;
+
+  &:hover{
+  background-color: rgb(235, 233, 228);
+
+  }
+
+  &:active{
+    background-color: rgb(245, 81, 22);
+  }
+}
