@@ -108,7 +108,7 @@
 import { useEffect, useState } from "react";
 import Restaurantcard from "./Restaurantcard";
 import Shimmer from "./Shimmer";
-
+import Errorpage from "./Errorpage";
 const Cardcontainer = () => {
     const [restaurantData, setRestaurantData] = useState([]);
     const [restaurantCollecttion, setRestaurantCollecttion] = useState([]);
@@ -142,7 +142,7 @@ const Cardcontainer = () => {
     }
     const handleRating=()=>{
         const filteredData = restaurantCollecttion.filter((restaurant) => {
-            return restaurant?.info?.avgRating>=4.0;
+            return restaurant?.info?.avgRating>=4.5;
        });
        setRestaurantData(filteredData);
     }
@@ -190,7 +190,8 @@ const Cardcontainer = () => {
 
     if (isFailed) {
         return (
-            <h1>Something Went Wrong</h1>
+            // <h1>Something Went Wrong</h1>
+            <Errorpage/>
         );
     }
 
@@ -205,6 +206,7 @@ const Cardcontainer = () => {
     return (
         <div>
             <div className="d-flex justify-between container">
+            
                 <div className="container">
                     <span><input type="text" className="p-2" placeholder="Enter name of restaurant" value={searchText} onChange={handleSearchText} /></span>
                     <span><button className="mx-2 p-2" onClick={filterData}>Search</button></span>

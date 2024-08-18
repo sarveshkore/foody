@@ -4,11 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';    //important file to imported to implement CSS using Bootstrap.
-
+import { RouterProvider } from 'react-router-dom';
+import Approuter from './Components/Approuter'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
-    <App />
+    {/* <App /> */}
+    <RouterProvider router={Approuter} />
   </>
 );
 
