@@ -8,7 +8,7 @@
     return(
         <>
         <div className="custom-card ">
-            <div className="m-2">
+            <div className="m-3">
                 <img src={IMG_URL+cloudinaryImageId}/>
             </div>
             <h4 className="restaurantName">{name}</h4>
