@@ -21,7 +21,6 @@ const appRouter = createBrowserRouter([
         //   {
         //     path:"contact",
         //     element:<ContactUs/>,
-            
         //   },
           {
             path:"cart",
